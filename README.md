@@ -4,7 +4,7 @@ This repository runs [Renovate](https://docs.renovatebot.com/) every week over t
 Renovate opens draft pull requests and keeps them up to date.
 It never merges them and never turns on auto-merge.
 
-The run is the reusable workflow in [victor-software-house/actions](https://github.com/victor-software-house/actions/blob/main/docs/renovate.md).
+The run is a reusable workflow in [victor-software-house/actions](https://github.com/victor-software-house/actions), described in its `docs/renovate.md`.
 `.github/workflows/renovate.yml` calls it, pinned by commit.
 
 ## Runs
