@@ -1,0 +1,37 @@
+name: Renovate
+
+on:
+  # Mondays at 09:00 UTC, inside the Monday-morning schedule of Renovate's configuration.
+  schedule:
+    - cron: "0 9 * * 1"
+  # A manual run is a dry run unless dry-run is turned off.
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: Report what Renovate would change, and write nothing.
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: renovate-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  renovate:
+    uses: victor-software-house/actions/.github/workflows/renovate.yml@5554bc524542ed0272ea941905078564971be5be # feat/renovate, 2026-11-22
+    permissions:
+      contents: read
+      # The mise action exchanges it for the release mirror's session token.
+      id-token: write
+    with:
+      mise-version: 2026.11.10
+      visibility: public
+      # A scheduled run has no inputs, so it writes.
+      dry-run: ${{ inputs.dry-run || false }}
+    secrets:
+      RENOVATE_APP_PRIVATE_KEY: ${{ secrets.RENOVATE_APP_PRIVATE_KEY }}
+      RELEASE_MIRROR_URL: ${{ secrets.RELEASE_MIRROR_URL }}
+      RELEASE_MIRROR_CI_KEY: ${{ secrets.RELEASE_MIRROR_CI_KEY }}
