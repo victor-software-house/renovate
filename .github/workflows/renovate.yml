@@ -21,7 +21,7 @@ concurrency:
 
 jobs:
   renovate:
-    uses: victor-software-house/actions/.github/workflows/renovate.yml@c51c4ba1637df38c535623777d8e9676271da82a # main, 2026-11-22
+    uses: victor-software-house/actions/.github/workflows/renovate.yml@e9cf7ef0da4f4a9a7a6f978f5dd54be0d0d539bc # main, 2026-11-26
     permissions:
       contents: read
       # The mise action exchanges it for the release mirror's session token.
